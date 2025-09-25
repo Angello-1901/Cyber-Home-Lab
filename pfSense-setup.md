@@ -32,9 +32,11 @@ ping 8.8.8.8
 pfctl -sr
 ```
 
-WebGUI essentials
+WebGUI Essentials
 
-Login at https://192.168.1.105
+Access the pfSense WebGUI from your host or VM browser:
+
+URL: https://192.168.1.105
 
 Username: admin
 
