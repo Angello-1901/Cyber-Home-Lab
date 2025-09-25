@@ -1,5 +1,5 @@
 # VirtualBox VM settings:
-##  *pfSense VM
+## pfSense VM
 
 - Name: pfSense
 
@@ -12,6 +12,7 @@
 - Disk: 19 GB (VDI or VHD)
 
 - Storage: Attach pfSense CE ISO to Optical Drive (IDE controller if you saw install issues)
+  
 
 # Network:
 
@@ -27,45 +28,50 @@
 
 - Cable Connected: checked
 
-Adapter 2 (LAN)
+  
 
-Attached to: Internal Network
+# Adapter 2 (LAN)
 
-Name: LabNet
+## Attached to: Internal Network
 
-Adapter Type: Intel PRO/1000 MT Server
+- Name: LabNet
 
-Promiscuous Mode: Allow All
+- Adapter Type: Intel PRO/1000 MT Server
 
-Cable Connected: checked
+- Promiscuous Mode: Allow All
 
-Windows Server 2022 VM
+- Cable Connected: checked
 
-Memory: 4096 MB (or what you can spare)
+- Windows Server 2022 VM
 
-Disk: 40+ GB
+- Memory: 4096 MB (or what you can spare)
 
-Network:
+- Disk: 40+ GB
 
-Adapter 1 → Internal Network → Name LabNet
 
-Adapter Type: Intel PRO/1000 MT Server
 
-Promiscuous Mode: Allow All (optional)
+# Network:
 
-Windows 10 VM
+## Adapter 1 → Internal Network → Name LabNet
 
-Network (same as Server): Internal Network → LabNet
+- Adapter Type: Intel PRO/1000 MT Server
 
-Kali VM
+- Promiscuous Mode: Allow All (optional)
 
-Adapter 1 → Internal Network → KaliNet (attacker VLAN)
+- Windows 10 VM
 
-Adapter 2 → NAT (or Bridged) for internet-only access
+- Network (same as Server): Internal Network → LabNet
 
-Promiscuous Mode = Allow All (if sniffing / IDS involved)
 
-VBoxManage useful commands
+# Kali VM
+
+- Adapter 1 → Internal Network → KaliNet (attacker VLAN)
+
+- Adapter 2 → NAT (or Bridged) for internet-only access
+
+- Promiscuous Mode = Allow All (if sniffing / IDS involved)
+
+#VBoxManage useful commands
 
 List VMs:
 ```bash
