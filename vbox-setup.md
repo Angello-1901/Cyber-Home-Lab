@@ -1,5 +1,5 @@
-VirtualBox VM settings (exact fields to copy)
-pfSense VM
+# VirtualBox VM settings:
+- pfSense VM
 
 Name: pfSense
 
