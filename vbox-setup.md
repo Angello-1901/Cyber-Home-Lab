@@ -1,7 +1,7 @@
 # VirtualBox VM settings:
 - pfSense VM
 
-Name: pfSense
+* Name: pfSense
 
 Type: Other / Other BSD (or BSD)
 
