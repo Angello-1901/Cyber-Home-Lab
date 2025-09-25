@@ -1,4 +1,4 @@
-# pfSense Setup Guide
+## 1. pfSense Setup Guide
 
 ## Console: assign interfaces & set LAN IP
 
@@ -32,45 +32,54 @@ ping 8.8.8.8
 pfctl -sr
 ```
 
-WebGUI Essentials
+---
 
-Access the pfSense WebGUI from your host or VM browser:
+## WebGUI Essentials
 
-URL: https://192.168.1.105
+Access the pfSense WebGUI from a browser **on a VM connected to the LabNet** or from the host (if the host can reach the VM network):
 
-Username: admin
+- **URL (lab-only):** `https://192.168.1.105`  
+  *Or use the hostname if you configured DNS: `https://pfsense-lab.local`*  
+  > Note: This address is reachable **only inside the lab network**. If you browse to the URL you will likely get a certificate warning (pfSense uses a self-signed cert by default) — proceed only if you recognize the device.
 
-Password: pfsense (change immediately)
+- **Username:** `admin`  
+- **Password:** `pfsense` *(change immediately after first login)*
 
-System → General Setup
+**Security notes**
+- Never enable the web GUI on the WAN interface unless you intentionally secure and restrict it.  
+- To minimize risk, restrict admin access to specific IPs: Firewall → Rules → WAN (allow only your host IP) or better, administer via the LAN only.
+- Keep WebGUI set to **HTTPS** (do not revert to HTTP).
+  
 
-Hostname: pfsense-lab
+---
 
-Domain: lab.local
+### System → General Setup
+- Hostname: `pfsense-lab`
+- Domain: `lab.local`
+- DNS Servers: `8.8.8.8`, `1.1.1.1`
+- Uncheck: *Allow DNS server list to be overridden by DHCP/PPP on WAN*
 
-DNS Servers: 8.8.8.8, 1.1.1.1
+---
 
-Uncheck Allow DNS server list to be overridden by DHCP/PPP on WAN
+### Services → DHCP Server → LAN
+- Enable DHCP server on LAN
+- Range: `192.168.1.106 – 192.168.1.110`
+- DNS servers: leave blank (default = pfSense) or set `8.8.8.8`
 
-Services → DHCP Server → LAN
+---
 
-Enable DHCP server on LAN
+### Services → DNS Resolver
+- Enable DNSSEC
+- (Optional) Enable DNS over TLS
+- Save & restart
 
-Range: 192.168.1.106 – 192.168.1.110
+---
 
-DNS servers: leave blank (pfSense) or set 8.8.8.8
+### Diagnostics → Packet Capture
+- Select `WAN` or `LAN` interface
+- Start capture
+- Download `.pcap` and open in Wireshark
 
-Services → DNS Resolver
-
-Enable DNSSEC
-
-(Optional) Enable DNS over TLS
-
-Save & restart
-
-Diagnostics → Packet Capture
-
-Capture on WAN or LAN for troubleshooting
 
 ---
 
