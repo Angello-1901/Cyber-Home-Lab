@@ -1,5 +1,5 @@
 # VirtualBox VM settings:
-## pfSense VM
+## * pfSense VM
 
 - Name: pfSense
 
