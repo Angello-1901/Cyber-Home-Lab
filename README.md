@@ -22,23 +22,28 @@ Reproducible, isolated home cyber lab for learning defensive and offensive techn
 - [Observability (Sysmon + Wazuh)](observability/agent-installation.md)
 - [Attack Playbooks (Kali Recon)](attack-playbooks/kali-basic-recon.md)
 - [Security Disclaimer](SECURITY.md)
-  
+
+---
 
 ## Screenshots
 
 ### VirtualBox Overview
 * Shows the VM setup (pfSense, Windows Server 2022, Windows 10, Kali Linux).
+  
 ![VirtualBox Overview](docs/vbox-overview.png)
 
 ### Active Directory on Windows Server 2022
 * Windows Server 2022 with Active Directory Users and Computers open, alongside a Windows 10 client.
+  
 ![Windows AD Demo](docs/windows-ad-demo.png)
 
 ### pfSense WebGUI
 * pfSense dashboard showing configured interfaces and firewall settings.
+  
 ![pfSense Dashboard](docs/pfsense-dashboard.png)
 
 ### Kali Linux
 * A display of my openned Kali Linux.
+  
 ![pfSense Dashboard](docs/Kali-Linux-demo.png)
 
