@@ -15,19 +15,19 @@ Planned next steps: Wazuh (SIEM), Sysmon (host EDR telemetry), Wireshark, Snort/
 ## Screenshots
 
 ### VirtualBox Overview
-Shows the VM setup (pfSense, Windows Server 2022, Windows 10, Kali Linux).
+* Shows the VM setup (pfSense, Windows Server 2022, Windows 10, Kali Linux).
 ![VirtualBox Overview](docs/vbox-overview.png)
 
 ### Active Directory on Windows Server 2022
-Windows Server 2022 with Active Directory Users and Computers open, alongside a Windows 10 client.
+* Windows Server 2022 with Active Directory Users and Computers open, alongside a Windows 10 client.
 ![Windows AD Demo](docs/windows-ad-demo.png)
 
 ### pfSense WebGUI
-pfSense dashboard showing configured interfaces and firewall settings.
+* pfSense dashboard showing configured interfaces and firewall settings.
 ![pfSense Dashboard](docs/pfsense-dashboard.png)
 
 ### Kali Linux
-A display of my openned Kali Linux.
+* A display of my openned Kali Linux.
 ![pfSense Dashboard](docs/Kali-Linux-demo.png)
 
 
