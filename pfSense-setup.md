@@ -1,4 +1,4 @@
-## 1. pfSense Setup Guide
+# pfSense Setup Guide
 
 ## Console: assign interfaces & set LAN IP
 
@@ -79,37 +79,3 @@ Access the pfSense WebGUI from a browser **on a VM connected to the LabNet** or 
 - Select `WAN` or `LAN` interface
 - Start capture
 - Download `.pcap` and open in Wireshark
-
-
----
-
-## 2. `ad-deploy.ps1`  
-
-**Commit message:**  
-
-Add PowerShell AD deployment script
-
-**Content:**  
-
-# ad-deploy.ps1
-# Installs AD DS and creates new forest lab.local
-# WARNING: Change domain and password before running.
-
-$DomainName = "lab.local"
-$SafeModePwdPlain = "P@ssw0rd!ChangeMe"   # CHANGE THIS
-$SafeModePwd = ConvertTo-SecureString $SafeModePwdPlain -AsPlainText -Force
-$NetBiosName = "LAB"
-
-Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
-Import-Module ADDSDeployment
-
-Install-ADDSForest `
-    -DomainName $DomainName `
-    -DomainNetbiosName $NetBiosName `
-    -SafeModeAdministratorPassword $SafeModePwd `
-    -InstallDNS `
-    -CreateDNSDelegation:$false `
-    -Force:$true
-
-# After reboot, configure DNS forwarders:
-# Add-DnsServerForwarder -IPAddress "8.8.8.8","1.1.1.1"
