@@ -1,31 +1,31 @@
 # VirtualBox VM settings:
-= pfSense VM
+## pfSense VM
 
-* Name: pfSense
+- Name: pfSense
 
-Type: Other / Other BSD (or BSD)
+- Type: Other / Other BSD (or BSD)
 
-Memory: 3072 MB (recommended)
+- Memory: 3072 MB (recommended)
 
-CPUs: 2
+- CPUs: 2
 
-Disk: 19 GB (VDI or VHD)
+- Disk: 19 GB (VDI or VHD)
 
-Storage: Attach pfSense CE ISO to Optical Drive (IDE controller if you saw install issues)
+- Storage: Attach pfSense CE ISO to Optical Drive (IDE controller if you saw install issues)
 
-Network:
+# Network:
 
-Adapter 1 (WAN)
+## Adapter 1 (WAN)
 
-Attached to: NAT (install); after install you may switch to Bridged Adapter
+- Attached to: NAT (install); after install you may switch to Bridged Adapter
 
-Name (if bridged): MediaTek Wi-Fi 6 MT7921 (or your host Wi-Fi NIC)
+- Name (if bridged): MediaTek Wi-Fi 6 MT7921 (or your host Wi-Fi NIC)
 
-Adapter Type: Intel PRO/1000 MT Server
+- Adapter Type: Intel PRO/1000 MT Server
 
-Promiscuous Mode: Allow All
+- Promiscuous Mode: Allow All
 
-Cable Connected: checked
+- Cable Connected: checked
 
 Adapter 2 (LAN)
 
