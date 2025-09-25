@@ -22,6 +22,7 @@ Reproducible, isolated home cyber lab for learning defensive and offensive techn
 - [Observability (Sysmon + Wazuh)](observability/agent-installation.md)
 - [Attack Playbooks (Kali Recon)](attack-playbooks/kali-basic-recon.md)
 - [Security Disclaimer](SECURITY.md)
+- [Security Disclaimer](docs)
 
 ---
 
