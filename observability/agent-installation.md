@@ -47,7 +47,7 @@ Get-Service -Name Sysmon64
 Get-WinEvent -ProviderName "Microsoft-Windows-Sysmon"
 ```
 
-TODO Notes
+### TODO Notes
 
 Harden the sysmon-config.xml rules before deployment (reduce noise, add exclusions).
 
@@ -65,7 +65,7 @@ Follow Wazuh manager installation docs (manager + Kibana/OpenSearch stack).
 
 https://documentation.wazuh.com/
 
-Install agent on Windows clients (example command):
+## Install agent on Windows clients (example command):
 
 ```powershell
 msiexec /i wazuh-agent-x.y.z.msi /qn WAZUH_MANAGER=192.168.1.200 WAZUH_AGENT_NAME=win10-client
