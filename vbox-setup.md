@@ -18,7 +18,7 @@
 
 ## Adapter 1 (WAN)
 
-- Attached to: NAT (install); after install you may switch to Bridged Adapter
+### Attached to: NAT (install); after install you may switch to Bridged Adapter
 
 - Name (if bridged): MediaTek Wi-Fi 6 MT7921 (or your host Wi-Fi NIC)
 
@@ -30,9 +30,9 @@
 
   
 
-# Adapter 2 (LAN)
+## Adapter 2 (LAN)
 
-## Attached to: Internal Network
+### Attached to: Internal Network
 
 - Name: LabNet
 
