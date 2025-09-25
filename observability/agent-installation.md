@@ -49,19 +49,19 @@ Get-WinEvent -ProviderName "Microsoft-Windows-Sysmon"
 
 ### TODO Notes
 
-Harden the sysmon-config.xml rules before deployment (reduce noise, add exclusions).
+* Harden the sysmon-config.xml rules before deployment (reduce noise, add exclusions).
 
-Add instructions to deploy remotely (PowerShell remoting, Group Policy, or Wazuh).
+* Add instructions to deploy remotely (PowerShell remoting, Group Policy, or Wazuh).
 
-Wazuh (SIEM / agent) — TODO
+* Wazuh (SIEM / agent) — TODO
 
-Goal: centralize logs (Sysmon, Windows event logs, endpoint alerts) and visualize via Wazuh manager.
+* **Goal:** centralize logs (Sysmon, Windows event logs, endpoint alerts) and visualize via Wazuh manager.
 
-Planned actions
+### Planned actions
 
-Provision a Linux VM for Wazuh manager (Ubuntu 22.04 or similar).
+* Provision a Linux VM for Wazuh manager (Ubuntu 22.04 or similar).
 
-Follow Wazuh manager installation docs (manager + Kibana/OpenSearch stack).
+* Follow Wazuh manager installation docs (manager + Kibana/OpenSearch stack).
 
 https://documentation.wazuh.com/
 
@@ -70,80 +70,80 @@ https://documentation.wazuh.com/
 ```powershell
 msiexec /i wazuh-agent-x.y.z.msi /qn WAZUH_MANAGER=192.168.1.200 WAZUH_AGENT_NAME=win10-client
 ```
-On the manager, accept/register the agent.
+* On the manager, accept/register the agent.
 
-Verify
+* Verify
 
-On manager: check agents list and status in Wazuh UI.
+* On manager: check agents list and status in Wazuh UI.
 
-On client: confirm agent service running:
+* On client: confirm agent service running:
 
 ```powershell
 Get-Service -Name wazuh-agent
 ```
-TODO Notes
+### TODO Notes
 
-Prepare manager install playbook.
+* Prepare manager install playbook.
 
-Store manager IP and registration keys in secure vault (don’t commit to repo).
+* Store manager IP and registration keys in secure vault.
 
-Configure Wazuh rules to ingest Sysmon events.
+* Configure Wazuh rules to ingest Sysmon events.
 
-Wireshark / Packet capture — TODO
+### Wireshark / Packet capture — TODO
 
-Goal: capture network traffic for deep packet inspection and detection tuning.
+**Goal:** capture network traffic for deep packet inspection and detection tuning.
 
-Planned actions
+**Planned actions**
 
-Use Wireshark on host for GUI analysis.
+* Use Wireshark on host for GUI analysis.
 
-Use pfSense Diagnostics → Packet Capture for targeted capture on WAN/LAN interfaces.
+* Use pfSense Diagnostics → Packet Capture for targeted capture on WAN/LAN interfaces.
 
-Save PCAP files and open in Wireshark for analysis.
+* Save PCAP files and open in Wireshark for analysis.
 
-Commands / steps
+## Commands / steps
 
-From pfSense WebGUI: Diagnostics → Packet Capture → choose interface (em0/em1), filter (optional), start → download .pcap.
+* From pfSense WebGUI: Diagnostics → Packet Capture → choose interface (em0/em1), filter (optional), start → download .pcap.
 
-On host, open .pcap in Wireshark.
+* On host, open .pcap in Wireshark.
 
-Verify
+* Verify
 
-Ensure captured traffic contains DNS, SMB, Kerberos, or other protocols expected from the lab.
+* Ensure captured traffic contains DNS, SMB, Kerberos, or other protocols expected from the lab.
 
-Example quick tcpdump (on Linux host / if available):
+**Example quick tcpdump (on Linux host / if available):**
 # capture 1000 packets to file on host (replace interface name)
 
 ```bash
 tcpdump -i eth0 -c 1000 -w lab_capture.pcap
 ```
 
-TODO Notes
+### TODO Notes
 
-Decide if permanent remote packet capture (pcap pipeline) is needed for SIEM ingestion.
+* Decide if permanent remote packet capture (pcap pipeline) is needed for SIEM ingestion.
 
-Add write-up of common Wireshark filters used in lab (e.g., smb kerberos dns).
+* Add write-up of common Wireshark filters used in lab (e.g., smb kerberos dns).
 
-Implementation checklist (for each TODO)
+* Implementation checklist (for each TODO)
 
- Build Wazuh manager VM
+* Build Wazuh manager VM
 
- Harden sysmon-config.xml and add to repo
+* Harden sysmon-config.xml and add to repo
 
- Deploy Sysmon to Windows clients (manual / GPO / script)
+* Deploy Sysmon to Windows clients (manual / GPO / script)
 
- Install Wazuh agents and register them
+* Install Wazuh agents and register them
 
- Validate agent telemetry in Wazuh UI
+* Validate agent telemetry in Wazuh UI
 
- Capture pcap from pfSense and analyze in Wireshark
+* Capture pcap from pfSense and analyze in Wireshark
 
- Tune Wazuh detection rules and validate with Kali test cases
+* Tune Wazuh detection rules and validate with Kali test cases
 
-Helpful links
+### Helpful links
 
-Sysmon: https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon
+**Sysmon:** https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon
 
-Wazuh docs: https://documentation.wazuh.com/
+**Wazuh docs:** https://documentation.wazuh.com/
 
-pfSense packet capture docs: https://docs.netgate.com/pfsense/en/latest/diagnostics/packet-capture.html
+**pfSense packet capture docs:** https://docs.netgate.com/pfsense/en/latest/diagnostics/packet-capture.html
