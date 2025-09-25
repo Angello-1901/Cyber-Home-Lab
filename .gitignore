@@ -1,0 +1,30 @@
+# Virtual machine images / ISOs
+*.vdi
+*.vhd
+*.vmdk
+*.iso
+*.ova
+
+# VirtualBox snapshots and logs
+**/Snapshots/**
+*.log
+
+# Backup or export configs
+*.bak
+*.xml
+*.ovpn
+*.sql
+
+# Keys and certificates (never commit!)
+*.pem
+*.pfx
+*.key
+
+# Windows / Mac system files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Installer binaries
+wazuh-agent-*.msi
+Sysmon*.exe
