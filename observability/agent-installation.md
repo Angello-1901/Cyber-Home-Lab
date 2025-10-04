@@ -114,39 +114,40 @@ Active forwards:
 
 3. **Verify that your Windows 10 and Windows Server 2022 logs are appearing.**
 
-## Notes:
+### Notes:
 
-### Sysmon config (SwiftOnSecurity) filters out benign noise and focuses on:
+* **Sysmon config (SwiftOnSecurity) filters out benign noise and focuses on:**
 
-- Process creation and parent-child relationships
+  - Process creation and parent-child relationships
 
-- Command-line arguments
+  - Command-line arguments
 
-- Network connections
+  - Network connections
 
-- Registry modifications
+  - Registry modifications
 
-- File creation time anomalies
+  - File creation time anomalies
 
-**Ensure NTP (Network Time Protocol) is enabled on all systems for accurate timestamps:**
+* **Ensure NTP (Network Time Protocol) is enabled on all systems for accurate timestamps:**
 
-- Ubuntu uses: sudo timedatectl set-ntp on
+  - Ubuntu uses: sudo timedatectl set-ntp on
 
-- Windows uses: w32tm /resync
+  - Windows uses: w32tm /resync
 
-### Wireshark / Packet capture — TODO
+# Wireshark / Packet capture — TODO:
 
-**Goal:** capture network traffic for deep packet inspection and detection tuning.
+### Goal: 
+Capture network traffic for deep packet inspection and detection tuning.
 
-**Planned actions**
+* **Planned actions**
 
-* Use Wireshark on host for GUI analysis.
+  * Use Wireshark on host for GUI analysis.
 
-* Use pfSense Diagnostics → Packet Capture for targeted capture on WAN/LAN interfaces.
+  * Use pfSense Diagnostics → Packet Capture for targeted capture on WAN/LAN interfaces.
 
-* Save PCAP files and open in Wireshark for analysis.
+  * Save PCAP files and open in Wireshark for analysis.
 
-## Commands / steps
+### Commands / steps:
 
 * From pfSense WebGUI: Diagnostics → Packet Capture → choose interface (em0/em1), filter (optional), start → download .pcap.
 
@@ -157,19 +158,17 @@ Active forwards:
 * Ensure captured traffic contains DNS, SMB, Kerberos, or other protocols expected from the lab.
 
 **Example quick tcpdump (on Linux host / if available):**
-# capture 1000 packets to file on host (replace interface name)
+### capture 1000 packets to file on host (replace interface name):
 
 ```bash
 tcpdump -i eth0 -c 1000 -w lab_capture.pcap
 ```
 
-### TODO Notes
+### Final Summarized Notes:
 
 * Decide if permanent remote packet capture (pcap pipeline) is needed for SIEM ingestion.
 
 * Add write-up of common Wireshark filters used in lab (e.g., smb kerberos dns).
-
-* Implementation checklist (for each TODO)
 
 * Capture pcap from pfSense and analyze in Wireshark
 
