@@ -1,70 +1,69 @@
 ## VirtualBox VM settings:
 ### pfSense VM
 
-- Name: pfSense
-- Type: Other / Other BSD (or BSD)
-- Memory: 3072 MB (recommended)
-- CPUs: 2
-- Disk: 19 GB (VDI or VHD)
-- Storage: Attach pfSense CE ISO to Optical Drive (IDE controller if you saw install issues)
+- **Name:** pfSense
+- **Type:** Other / Other BSD (or BSD)
+- **Memory:** 3072 MB (recommended)
+- **CPUs:** 3
+- **Disk:** 19 GB (VDI or VHD)
+- **Storage:** Attach pfSense CE ISO to Optical Drive (IDE controller if you saw install issues)
   
 ## Network:
-## Adapter 1 (WAN)
 
-### Attached to: NAT (install); after install you may switch to Bridged Adapter
+### Adapter 1 (WAN)
+**Attached to: NAT (install); after install you may switch to Bridged Adapter**
 
-- Name (if bridged): MediaTek Wi-Fi 6 MT7921 (or your host Wi-Fi NIC)
+- **Name (if bridged):** MediaTek Wi-Fi 6 MT7921 (or your host Wi-Fi NIC)
+- **Adapter Type:** Paravirtualized Network
+- **Promiscuous Mode:** Allow All
+- **Cable Connected:** checked  
 
-- Adapter Type: Intel PRO/1000 MT Server
+### Adapter 2 (LAN)
+**Attached to: Internal Network**
 
-- Promiscuous Mode: Allow All
+- **Name:** LabNet
+- **Adapter Type:** Paravirtualized Network
+- **Promiscuous Mode:** Allow All
+- **Cable Connected:** checked
 
-- Cable Connected: checked
+### Windows Server 2022 VM
 
-  
-
-## Adapter 2 (LAN)
-
-### Attached to: Internal Network
-
-- Name: LabNet
-
-- Adapter Type: Intel PRO/1000 MT Server
-
-- Promiscuous Mode: Allow All
-
-- Cable Connected: checked
-
-- Windows Server 2022 VM
-
-- Memory: 4096 MB (or what you can spare)
-
-- Disk: 40+ GB
+- **Memory:** 4096 MB (or what you can spare)
+- **Disk:** 40+ GB
 
 
 
-# Network:
+## Network:
 
-## Adapter 1 → Internal Network → Name LabNet
-
-- Adapter Type: Intel PRO/1000 MT Server
-
-- Promiscuous Mode: Allow All (optional)
-
-- Windows 10 VM
-
-- Network (same as Server): Internal Network → LabNet
+### Adapter 1 → Internal Network → Name LabNet
+- **Adapter Type:** Paravirtualized Network
+- **Promiscuous Mode:** Allow All (optional)
+- **Windows 10 VM**
+- **Network (same as Server):** Internal Network → LabNet
 
 
-# Kali VM
+## Kali VMs
 
+### Kali Linux (Attacker):
+- **Adapter Type:** Paravirtualized Network
+- **Promiscuous Mode:** Allow All (optional)
 - Adapter 1 → Internal Network → KaliNet (attacker VLAN)
-
 - Adapter 2 → NAT (or Bridged) for internet-only access
+- Promiscuous Mode = Allow All
+-  **Memory:** 3096 MB (or what you can spare)
+- **Disk:** 40+ GB
 
+### Ubuntu Kali (Defender with Splunk + Wireshark)
+- **Adapter Type:** Paravirtualized Network
+- **Promiscuous Mode:** Allow All (optional)
+- Adapter 1 → Internal Network → (Your defender cyberlab LAN)
+- Adapter 2 → NAT (or Bridged) for internet-only access
 - Promiscuous Mode = Allow All (if sniffing / IDS involved)
+- **Memory:** 4096 MB (or what you can spare)
+- **Disk:** 80+ GB
+- **CPUs:** 2
 
-# VBoxManage useful commands
+## VBoxManage useful commands
 
 List VMs:
 ```bash
