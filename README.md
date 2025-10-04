@@ -14,7 +14,7 @@ Reproducible, isolated home cyber lab for learning defensive and offensive techn
 * **Kali Linux —** Attacker machine on isolated attacker VLAN
 
 * **Security Software -** Installation of Sismon on endpoints for advanced log analysis
-  - hi
+ - hi
 
 ## Planned next steps: 
 * Sysmon (host EDR telemetry), Wireshark, Snort/Suricata, and controlled attacks from Kali to exercise detections
