@@ -1,23 +1,18 @@
-## Observability — Planned installs & TODOs (add now, implement later)
-
-> NOTE: The steps below document what I'll install and how to verify it. These are intended as a reproducible checklist to implement and test in the lab. They are safe to keep in the repo as documentation (no secrets).
-
----
-
-### Sysmon (Windows clients) — TODO
+## Sysmon (Windows clients)
 **Goal:** collect detailed Windows process, network, and file/registry telemetry for detection.
 
-**Planned actions**
+**Actions**
 1. Download Sysmon from Microsoft Sysinternals:
    - https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon
 
-2. Place a hardened config file `sysmon-config.xml` in a repo folder (example provided below). Install on each Windows client in an elevated PowerShell session:
+2. Download a hardened configuration (we used [SwiftOnSecurity’s Sysmon config].
 
-# run on Windows client (elevated)
+3. Extract the Sysmon zip and place both files in `C:\Tools\Sysmon`.
 
 ```powershell
 .\Sysmon64.exe -i sysmon-config.xml -accepteula
 ```
+
 # update config later
 
 ```powershell
@@ -25,6 +20,8 @@
 ```
 
 Example minimal config (sysmon-config.xml):
+
+```powershell
 <Sysmon schemaversion="4.50">
   <EventFiltering>
     <ProcessCreate onmatch="include" />
@@ -33,8 +30,9 @@ Example minimal config (sysmon-config.xml):
     <FileCreateTime onmatch="exclude" />
   </EventFiltering>
 </Sysmon>
+```
 
-Verify Sysmon is running
+4. Verify Sysmon is running
 
 # On the Windows client
 
@@ -47,47 +45,92 @@ Get-Service -Name Sysmon64
 Get-WinEvent -ProviderName "Microsoft-Windows-Sysmon"
 ```
 
-### TODO Notes
+### Sysmon events should now appear in:
 
-* Harden the sysmon-config.xml rules before deployment (reduce noise, add exclusions).
+Event Viewer → Applications and Services Logs → Microsoft → Windows → Sysmon → Operational
 
-* Add instructions to deploy remotely (PowerShell remoting, Group Policy, or Wazuh).
 
-* Wazuh (SIEM / agent) — TODO
+* **Goal:** centralize logs (Sysmon, Windows event logs, endpoint alerts) and visualize via Splunk SIEM Tool.
 
-* **Goal:** centralize logs (Sysmon, Windows event logs, endpoint alerts) and visualize via Wazuh manager.
+## Actions
 
-### Planned actions
+* Provision a Linux VM for Splunk (Ubuntu 22.04 or similar).
 
-* Provision a Linux VM for Wazuh manager (Ubuntu 22.04 or similar).
+* Follow Splunk installation.
 
-* Follow Wazuh manager installation docs (manager + Kibana/OpenSearch stack).
+## Download the Splunk Universal Forwarder:
+1. https://www.splunk.com/en_us/download/universal-forwarder.html (or follow path in official site)
 
-https://documentation.wazuh.com/
+2. Place the installer in C:\Temp.
 
-## Install agent on Windows clients (example command):
+3. Run the following PowerShell command (as Administrator) to install silently:
+   
+```powershell
+msiexec.exe /i "C:\Temp\splunkforwarder.msi" AGREETOLICENSE=Yes LAUNCHSPLUNK=0 /qn
+```
+
+4. Add your Splunk Indexer (Ubuntu) as the receiving server using FQDN:
 
 ```powershell
-msiexec /i wazuh-agent-x.y.z.msi /qn WAZUH_MANAGER=192.168.1.200 WAZUH_AGENT_NAME=win10-client
+& "C:\Program Files\SplunkUniversalForwarder\bin\splunk.exe" add forward-server (Ubuntu FQDN):9997 -auth admin:(Admin Username)
 ```
-* On the manager, accept/register the agent.
-
-* Verify
-
-* On manager: check agents list and status in Wazuh UI.
-
-* On client: confirm agent service running:
+5. Enable Windows Event Logs and Sysmon forwarding:
 
 ```powershell
-Get-Service -Name wazuh-agent
+& "C:\Program Files\SplunkUniversalForwarder\bin\splunk.exe" add monitor "C:\Windows\System32\winevt\Logs\Security.evtx"
+& "C:\Program Files\SplunkUniversalForwarder\bin\splunk.exe" add monitor "C:\Windows\System32\winevt\Logs\System.evtx"
+& "C:\Program Files\SplunkUniversalForwarder\bin\splunk.exe" add monitor "C:\Windows\System32\winevt\Logs\Application.evtx"
+& "C:\Program Files\SplunkUniversalForwarder\bin\splunk.exe" add monitor "C:\Windows\System32\winevt\Logs\Microsoft-Windows-Sysmon%4Operational.evtx"
 ```
-### TODO Notes
 
-* Prepare manager install playbook.
+6. Restart the forwarder service:
 
-* Store manager IP and registration keys in secure vault.
+```powershell
+Restart-Service splunkforwarder
+```
 
-* Configure Wazuh rules to ingest Sysmon events.
+7. Verify that the connection to the Splunk Indexer is active:
+
+```powershell
+& "C:\Program Files\SplunkUniversalForwarder\bin\splunk.exe" list forward-server
+```
+
+8. You should see:
+
+```powershell
+Active forwards:
+  (Ubuntu Linux FQDN):9997
+```
+
+## Validation in Splunk (on Ubuntu Indexer)
+
+1. **Log into Splunk Web UI:**
+   http://(Your Ubuntu LAN IP):8000
+
+2. **Go to Search & Reporting → Search and run:**
+   index=wineventlog OR index=sysmon
+
+3. **Verify that your Windows 10 and Windows Server 2022 logs are appearing.**
+
+## Notes:
+
+### Sysmon config (SwiftOnSecurity) filters out benign noise and focuses on:
+
+- Process creation and parent-child relationships
+
+- Command-line arguments
+
+- Network connections
+
+- Registry modifications
+
+- File creation time anomalies
+
+**Ensure NTP (Network Time Protocol) is enabled on all systems for accurate timestamps:**
+
+- Ubuntu uses: sudo timedatectl set-ntp on
+
+- Windows uses: w32tm /resync
 
 ### Wireshark / Packet capture — TODO
 
@@ -126,24 +169,6 @@ tcpdump -i eth0 -c 1000 -w lab_capture.pcap
 
 * Implementation checklist (for each TODO)
 
-* Build Wazuh manager VM
-
-* Harden sysmon-config.xml and add to repo
-
-* Deploy Sysmon to Windows clients (manual / GPO / script)
-
-* Install Wazuh agents and register them
-
-* Validate agent telemetry in Wazuh UI
-
 * Capture pcap from pfSense and analyze in Wireshark
 
-* Tune Wazuh detection rules and validate with Kali test cases
-
-### Helpful links
-
-**Sysmon:** https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon
-
-**Wazuh docs:** https://documentation.wazuh.com/
-
-**pfSense packet capture docs:** https://docs.netgate.com/pfsense/en/latest/diagnostics/packet-capture.html
+* Tune Splunk detection rules and validate with Kali test cases
