@@ -20,8 +20,9 @@ Reproducible, isolated home cyber lab for learning defensive and offensive techn
   - Enabling NTP for time synchorization on all endpoints for log tracking accuracy 
 
 ## Planned next steps: 
-  -1 Installation and configuration of Wireshark with port mirroring for traffic analysis
-  2## Snort/Suricata, and controlled attacks from Kali to exercise detections
+  - Configure Splunk alerts + correlation searches to filter false positives
+  - Installation and configuration of Wireshark with port mirroring for traffic analysis
+  - **Later phase:** add SOAR (Splunk Phantom) for automated response playbooks.
 
 
 ## Table of Contents
