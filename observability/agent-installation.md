@@ -32,7 +32,7 @@ Example minimal config (sysmon-config.xml):
 </Sysmon>
 ```
 
-5. **Verify Sysmon is running**
+### 5. **Verify Sysmon is running**
 
 # On the Windows client
 
