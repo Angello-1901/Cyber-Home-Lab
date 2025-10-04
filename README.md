@@ -29,7 +29,7 @@ Reproducible, isolated home cyber lab for learning defensive and offensive techn
 - [VirtualBox Setup](vbox-setup.md)
 - [pfSense Setup](pfSense-setup.md)
 - [Active Directory Deployment](ad-deploy.ps1)
-- [Observability (Sysmon + Wazuh)](observability/agent-installation.md)
+- [Observability (Sysmon + Splunk + Splunk UF)](observability/agent-installation.md)
 - [Attack Playbooks (Kali Recon)](attack-playbooks/kali-basic-recon.md)
 - [Security Disclaimer](SECURITY.md)
 - [Screenshots](docs)
