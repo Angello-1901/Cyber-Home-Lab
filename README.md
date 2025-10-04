@@ -13,11 +13,14 @@ Reproducible, isolated home cyber lab for learning defensive and offensive techn
 
 * **Kali Linux —** Attacker machine on isolated attacker VLAN
 
-* **Security Software -** Installation of Sismon on endpoints for advanced log analysis
- - hi
+* **Security Software -** Applicable to all endpoints within the LAN Network:
+  - Installation and configuration of Suricata (IDS/IPS) on pfSense using open Emerging Threats Open (ET Open) ruleset
+  - Installation and configuration of Sismon on endpoints for advanced log analysis (Windows Server 2022 and Windows 10)
+  - Installation and configuration of Splunk UF for log forwarding to Splunk SIEM (hosted in Ubuntu Linux)
+  - Enabling NTP for time synchorization on all endpoints for log tracking accuracy 
 
 ## Planned next steps: 
-* Sysmon (host EDR telemetry), Wireshark, Snort/Suricata, and controlled attacks from Kali to exercise detections
+* Wireshark, Snort/Suricata, and controlled attacks from Kali to exercise detections
 
 
 ## Table of Contents
