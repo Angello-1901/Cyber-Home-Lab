@@ -54,7 +54,7 @@ Event Viewer → Applications and Services Logs → Microsoft → Windows → Sy
   
 ---
 
-## Important (Before you Proceed to next steps):
+## Important (Before you Proceed to Next Steps):
 
 * Refer to **Virtual Box Setup** in "Index" for guidence on Linux (Ubuntu 22.04 or similar) and Splunk installation.
 
