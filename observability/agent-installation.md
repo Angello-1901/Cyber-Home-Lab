@@ -13,7 +13,7 @@
 .\Sysmon64.exe -i sysmon-config.xml -accepteula
 ```
 
-# update config later
+4. **Update config later**
 
 ```powershell
 .\Sysmon64.exe -c sysmon-config.xml
@@ -32,7 +32,7 @@ Example minimal config (sysmon-config.xml):
 </Sysmon>
 ```
 
-4. Verify Sysmon is running
+5. **Verify Sysmon is running**
 
 # On the Windows client
 
