@@ -34,12 +34,12 @@ Example minimal config (sysmon-config.xml):
 
 ### 5. **Verify Sysmon is running**
 
-# On the Windows client
+* **On the Windows client**
 
 ```powershell
 Get-Service -Name Sysmon64
 ```
-# Check recent Sysmon events:
+* **Check recent Sysmon events:**
 
 ```powershell
 Get-WinEvent -ProviderName "Microsoft-Windows-Sysmon"
