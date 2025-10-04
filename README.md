@@ -3,17 +3,18 @@
 ### Goal:
 Reproducible, isolated home cyber lab for learning defensive and offensive techniques. Primary VMs:
 
-* **pfSense —** virtual router/firewall (LAN = isolated lab network; WAN = NAT or bridged to host)
-
-* **Security Software**
+* **pfSense —** Virtual router/firewall (LAN = isolated lab network; WAN = NAT or bridged to host)
 
 * **Windows Server 2022 —** Active Directory Domain Controller (AD DS), DNS optional
 
-* **Windows 10 —** domain-joined workstation
+* **Windows 10 —** Domain-joined workstation
 
 * **Kali Ubuntu —** Server hosting Splunk SIEM tool and Wireshark
 
-* **Kali Linux —** attacker machine on isolated attacker VLAN
+* **Kali Linux —** Attacker machine on isolated attacker VLAN
+
+* **Security Software -** Installation of Sismon on endpoints for advanced log analysis
+** Hi
 
 ## Planned next steps: 
 * Sysmon (host EDR telemetry), Wireshark, Snort/Suricata, and controlled attacks from Kali to exercise detections
