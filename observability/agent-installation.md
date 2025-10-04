@@ -51,12 +51,14 @@ Event Viewer → Applications and Services Logs → Microsoft → Windows → Sy
 
 
 * **Goal:** centralize logs (Sysmon, Windows event logs, endpoint alerts) and visualize via Splunk SIEM Tool.
+  
+---
 
-## Actions
+## Important (Before you Proceed to next steps):
 
-* Provision a Linux VM for Splunk (Ubuntu 22.04 or similar).
+* Refer to **Virtual Box Setup** in "Index" for guidence on Linux (Ubuntu 22.04 or similar) and Splunk installation.
 
-* Follow Splunk installation.
+---
 
 ## Download the Splunk Universal Forwarder:
 1. https://www.splunk.com/en_us/download/universal-forwarder.html (or follow path in official site)
