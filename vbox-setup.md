@@ -1,21 +1,14 @@
-# VirtualBox VM settings:
-## pfSense VM
+## VirtualBox VM settings:
+### pfSense VM
 
 - Name: pfSense
-
 - Type: Other / Other BSD (or BSD)
-
 - Memory: 3072 MB (recommended)
-
 - CPUs: 2
-
 - Disk: 19 GB (VDI or VHD)
-
 - Storage: Attach pfSense CE ISO to Optical Drive (IDE controller if you saw install issues)
   
-
-# Network:
-
+## Network:
 ## Adapter 1 (WAN)
 
 ### Attached to: NAT (install); after install you may switch to Bridged Adapter
