@@ -5,14 +5,18 @@ Reproducible, isolated home cyber lab for learning defensive and offensive techn
 
 * **pfSense —** virtual router/firewall (LAN = isolated lab network; WAN = NAT or bridged to host)
 
+* **Security Software**
+
 * **Windows Server 2022 —** Active Directory Domain Controller (AD DS), DNS optional
 
 * **Windows 10 —** domain-joined workstation
 
+* **Kali Ubuntu —** Server hosting Splunk SIEM tool and Wireshark
+
 * **Kali Linux —** attacker machine on isolated attacker VLAN
 
 ## Planned next steps: 
-* Wazuh (SIEM), Sysmon (host EDR telemetry), Wireshark, Snort/Suricata, and controlled attacks from Kali to exercise detections
+* Sysmon (host EDR telemetry), Wireshark, Snort/Suricata, and controlled attacks from Kali to exercise detections
 
 
 ## Table of Contents
